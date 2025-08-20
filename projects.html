@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Manas Vikalp — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root{
+      --bg:#f8e9e6; --card:#fff; --text:#202226; --muted:#6e737c;
+      --accent:#ff5a3c; --accent-2:#111316; --shadow:0 16px 40px rgba(17,19,22,.08);
+      --radius:18px; --radius-lg:22px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.45;-webkit-font-smoothing:antialiased}
+
+    /* ===== Header ===== */
+    .topbar{position:sticky;top:0;z-index:50;background:var(--accent-2);color:#fff;box-shadow:0 6px 20px rgba(0,0,0,.15)}
+    .nav{max-width:1180px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;gap:24px}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:700}
+    .logo-mark{width:28px;height:28px;display:grid;place-items:center;background:var(--accent);color:#fff;border-radius:8px;box-shadow:0 6px 14px rgba(255,90,60,.35);font-weight:800}
+    .spacer{flex:1}
+    .nav-links{display:flex;gap:22px}
+    .nav-links a{color:#e9edf3;text-decoration:none;font-weight:500;font-size:14px;transition:.2s}
+    .nav-links a:hover{opacity:.85;transform:translateY(-1px)}
+    .cta{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:12px;background:var(--accent);color:#fff;text-decoration:none;font-weight:600;font-size:14px;box-shadow:0 10px 20px rgba(255,90,60,.35);transition:.18s}
+    .cta:hover{transform:translateY(-1px);box-shadow:0 14px 26px rgba(255,90,60,.4)}
+    .cta svg{width:16px;height:16px}
+
+    /* ===== Layout ===== */
+    .wrap{max-width:1180px;margin:42px auto 80px;padding:0 22px}
+    .card{background:var(--card);border-radius:var(--radius-lg);box-shadow:var(--shadow);overflow:hidden}
+
+    /* ===== Hero ===== */
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;padding:54px;position:relative}
+    .hero::before,.hero::after{content:'';position:absolute;width:10px;height:10px;border-radius:50%;background:#ffe1d9;filter:blur(.5px);animation:float 10s ease-in-out infinite}
+    .hero::before{left:24%;top:24%}
+    .hero::after{left:52%;top:72%;animation-delay:2s}
+    .hello{font-size:14px;color:var(--muted);margin-bottom:4px}
+    .hello b{color:var(--accent)}
+    .title{font-size:clamp(28px,4vw,44px);line-height:1.12;margin:6px 0 14px;font-weight:800}
+    .copy{color:var(--muted);max-width:52ch;margin-bottom:26px}
+    .btn-row{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:12px;border:1px solid #eceef1;background:#fff;color:var(--text);text-decoration:none;font-weight:600;transition:.18s;box-shadow:0 4px 10px rgba(17,19,22,.06)}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 10px 18px rgba(17,19,22,.10)}
+    .btn--accent{background:var(--accent);border-color:transparent;color:#fff}
+    .btn svg{width:18px;height:18px}
+    .social{margin-top:24px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .social small{color:var(--muted)}
+    .icons{display:flex;gap:8px}
+    .icon-btn{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:#fff;border:1px solid #eceef1;box-shadow:0 6px 12px rgba(17,19,22,.06);transition:.18s;text-decoration:none}
+    .icon-btn:hover{transform:translateY(-2px);box-shadow:0 12px 18px rgba(17,19,22,.1)}
+    .icon-btn svg{width:16px;height:16px;fill:#111316}
+
+    .visual{position:relative;display:grid;place-items:center;padding:24px}
+    .ring{width:min(360px,80%);aspect-ratio:1/1;border-radius:50%;background:radial-gradient(closest-side,#ff7a61 0%,#ff5a3c 60%,#ff5a3c 60%,transparent 62%);filter:drop-shadow(0 24px 38px rgba(255,90,60,.35));display:grid;place-items:center;animation:ringPulse 3.2s ease-in-out infinite}
+    .photo{width:82%;aspect-ratio:1/1;background:radial-gradient(120% 120% at 70% 20%,rgba(255,255,255,.65) 0 20%,transparent 20% 100%),#d7dbe0;border-radius:50%;display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.12);position:relative}
+    .photo::after{content:"";font-weight:800;font-size:56px;color:#4a4f57;letter-spacing:.04em;opacity:.9}
+    .badge{position:absolute;bottom:18px;right:22px;padding:8px 12px;border-radius:12px;background:#fff;border:1px solid #eceef1;box-shadow:0 8px 18px rgba(17,19,22,.08);display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);transform:translateY(6px);opacity:0;transition:.25s}
+    .visual:hover .badge{transform:translateY(0);opacity:1}
+
+    /* Reveal helper */
+    .reveal{opacity:0;transform:translateY(18px)}
+    .reveal.show{opacity:1;transform:none;transition:opacity .6s, transform .6s}
+    .note{text-align:center;color:#9aa0a8;font-size:12px;margin-top:16px}
+
+    /* ===== Projects ===== */
+    .projects{padding:34px;border-radius:var(--radius-lg);box-shadow:var(--shadow);background:#fff}
+    .projects__header{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+    .projects__title{margin:0;font-size:clamp(22px,2.6vw,30px)}
+    .projects__subtitle{margin:0;color:var(--muted)}
+    .filters{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 24px}
+    .chip{appearance:none;border:1px solid #eceef1;background:#fff;color:var(--text);padding:8px 12px;border-radius:999px;font-weight:600;cursor:pointer;box-shadow:0 4px 10px rgba(17,19,22,.06);transition:.15s}
+    .chip:hover{transform:translateY(-1px);box-shadow:0 10px 18px rgba(17,19,22,.10)}
+    .chip.is-active{background:var(--accent);color:#fff;border-color:transparent;box-shadow:0 10px 20px rgba(255,90,60,.35)}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+    @media (max-width:980px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media (max-width:640px){.grid{grid-template-columns:1fr}}
+
+    .card-p{position:relative;border:1px solid #eceef1;border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 8px 22px rgba(17,19,22,.06);transition:.18s;cursor:pointer}
+    .card-p:hover{transform:translateY(-4px);box-shadow:0 18px 36px rgba(17,19,22,.12);border-color:#e7eaee}
+    .card-p__thumb {
+  aspect-ratio: 16 / 10;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+}
+
+    .card-p__thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,rgba(255,255,255,0) 20%,rgba(255,255,255,.55) 40%,rgba(255,255,255,0) 60%);transform:translateX(-100%);animation:shimmer 2.2s infinite}
+    @keyframes shimmer{0%{transform:translateX(-100%)}60%,100%{transform:translateX(120%)}}
+    .card-p__cap{padding:14px 16px 16px}
+    .card-p__title{margin:0 0 6px;font-size:16px;font-weight:700}
+    .card-p__desc{margin:0;color:var(--muted);font-size:14px}
+    .tags{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+    .badge-inline{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#555;background:#f6f7f9;border:1px solid #eceef1;border-radius:999px;padding:6px 10px}
+
+    /* Modal */
+    .modal{position:fixed;inset:0;display:none;z-index:100}
+    .modal[aria-hidden="false"]{display:block}
+    .modal__backdrop{position:absolute;inset:0;background:rgba(0,0,0,.32);backdrop-filter:blur(2px)}
+    .modal__dialog{position:relative;max-width:980px;margin:6vh auto;background:#fff;border-radius:16px;overflow:hidden;display:grid;grid-template-columns:1.1fr .9fr;box-shadow:0 30px 60px rgba(0,0,0,.2);animation:modalIn .24s ease}
+    @keyframes modalIn{from{transform:translateY(10px);opacity:0}to{transform:none;opacity:1}}
+    @media (max-width:900px){.modal__dialog{grid-template-columns:1fr;margin:7vh 16px}}
+    .modal__media{min-height:280px;background:linear-gradient(135deg,#ffe3db,#ffd2c7);display:grid;place-items:center}
+    .modal__content{padding:22px}
+    .modal__title{margin:0 0 8px;font-size:clamp(18px,3vw,26px)}
+    .modal__desc{margin:0 0 14px;color:var(--muted)}
+    .modal__meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+    .modal__actions{display:flex;gap:10px;flex-wrap:wrap}
+    .modal__close{position:absolute;top:10px;right:12px;width:36px;height:36px;border-radius:10px;border:1px solid #eceef1;background:#fff;box-shadow:0 6px 12px rgba(17,19,22,.08);font-size:22px;line-height:1;cursor:pointer;transition:.15s}
+    .modal__close:hover{transform:translateY(-1px)}
+	
+	/* Contact */
+  .contact{padding:34px;border-radius:var(--radius-lg);box-shadow:var(--shadow);background:#fff}
+  .contact__grid{display:grid;grid-template-columns:1fr 1.3fr;gap:24px}
+  @media (max-width:980px){.contact__grid{grid-template-columns:1fr}}
+  .contact__title{margin:0 0 6px;font-size:clamp(22px,2.6vw,30px)}
+  .contact__subtitle{margin:0 0 20px;color:var(--muted)}
+  .info-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  @media (max-width:640px){.info-cards{grid-template-columns:1fr}}
+  .info{border:1px solid #eceef1;border-radius:14px;padding:14px 16px;background:#fff;box-shadow:0 8px 18px rgba(17,19,22,.06)}
+  .info b{display:block}
+  .map{margin-top:14px;height:180px;border-radius:14px;border:1px dashed #eceef1;background:linear-gradient(135deg,#ffe3db,#ffd2c7);display:grid;place-items:center;color:#9a6a60;font-weight:600}
+
+  .form{display:grid;gap:12px}
+  .field{position:relative}
+  .input, .textarea{
+    width:100%; padding:14px 14px 14px 14px; border-radius:12px; border:1px solid #eceef1; background:#fff;
+    font:inherit; color:var(--text); outline:none; transition:border .15s, box-shadow .15s, transform .06s ease;
+    box-shadow:0 4px 10px rgba(17,19,22,.06)
+  }
+  .textarea{min-height:130px; resize:vertical}
+  .label{
+    position:absolute; left:12px; top:12px; color:#8b9097; background:#fff; padding:0 6px; pointer-events:none;
+    transform-origin:left top; transition:.15s; border-radius:6px
+  }
+  .input:focus, .textarea:focus{border-color:#ffd6cd; box-shadow:0 8px 18px rgba(17,19,22,.10)}
+  .input:not(:placeholder-shown) + .label,
+  .textarea:not(:placeholder-shown) + .label,
+  .input:focus + .label, .textarea:focus + .label{
+    transform: translateY(-18px) scale(.86); color:#ff6f55
+  }
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media (max-width:640px){.row{grid-template-columns:1fr}}
+  .error{font-size:12px;color:#e5484d;min-height:14px;padding-left:2px}
+  .toast{
+    position:fixed; right:18px; bottom:18px; background:#111; color:#fff; padding:12px 14px;
+    border-radius:12px; box-shadow:0 16px 30px rgba(0,0,0,.25); opacity:0; transform:translateY(8px);
+    transition:.25s; z-index:9999
+  }
+  .toast.show{opacity:1; transform:none}
+	
+	 /* ===== Footer ===== */
+    footer{background:var(--accent-2);color:#fff;padding:30px 22px 20px;margin-top:60px}
+    .footer-container{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center}
+    .footer-left{font-size:14px}
+    .footer-links{display:flex;gap:14px}
+    .footer-links a{color:#fff;text-decoration:none;font-size:14px;transition:.2s}
+    .footer-links a:hover{color:var(--accent)}
+    .footer-social{display:flex;gap:10px}
+    .footer-social a{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;background:#fff;border-radius:50%;color:var(--accent-2);font-size:14px;text-decoration:none;transition:.2s}
+    .footer-social a:hover{background:var(--accent);color:#fff}
+    .footer-bottom{text-align:center;margin-top:20px;font-size:12px;color:#ccc}
+	
+	/* Go to Top Button */
+#goTopBtn {
+  position: fixed;
+  bottom: 26px;
+  right: 26px;
+  z-index: 99;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  outline: none;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#goTopBtn:hover {
+  background: #e64e2e; /* darker accent */
+  transform: translateY(-2px);
+}
+
+#goTopBtn.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+    /* Animations */
+    @keyframes ringPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+    @keyframes float{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-8px,0)}}
+
+    /* Responsive hero */
+    @media (max-width:980px){.hero{grid-template-columns:1fr;padding:34px}.visual{order:-1}.social{margin-top:18px}}
+	
+	/* Mobile header layout */
+@media (max-width: 768px) {
+  .nav {
+    flex-wrap: wrap;                  /* allow wrapping */
+    justify-content: space-between;   /* spread logo and button */
+    align-items: center;
+  }
+
+  /* Logo stays left */
+  .logo {
+    order: 1;
+    flex: 1 1 auto;
+  }
+
+  /* Hire Me button stays right, shrinks naturally */
+  .cta {
+    order: 2;
+    flex: 0 0 auto;
+    padding: 8px 14px;      /* smaller padding */
+    font-size: 14px;        /* smaller text */
+    border-radius: 8px;
+    margin: 0;
+  }
+
+  /* Nav links drop below full width */
+  .nav-links {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    margin-top: 8px;
+    gap: 16px;
+  }
+}
+
+.modal__experience{ margin-top:10px; font-size:14px; color:var(--muted); }
+
+.experience-list {
+  margin-top: 12px;
+  padding-left: 20px;
+  font-size: 10px;
+  line-height: 1.5;
+  color: #444;
+}
+.experience-list li {
+  margin-bottom: 6px;
+}
+
+
+
+  </style>
+</head>
+<body>
+  <!-- ===== Header ===== -->
+  <header class="topbar">
+    <nav class="nav">
+      <a class="logo" href="#"><span class="logo-mark">MV</span><span>Manas Vikalp</span></a>
+      <div class="spacer"></div>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#projects">Experience</a><a href="ManasVikalp-Resume.pdf" target="_blank">Resume</a>
+      </div>
+      <a class="cta" href="#contact">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 5l7 7-7 7M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Hire Me
+      </a>
+    </nav>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <main class="wrap">
+    <section class="card reveal" id="home">
+      <div class="hero">
+        <div>
+          <div class="hello">Hello, I’m <b>Manas Vikalp</b></div>
+          <h1 class="title">UI/UX, Product Manager & Scrum Master</h1>
+          <p class="copy">Scrum Master, Product Manager, and UI/UX Specialist with 9+ years’ experience in Agile delivery, CMS (Sitecore), SEO, and digital transformation—driving cross-functional teams, enterprise integrations, and impactful business outcomes.</p>
+          <div class="btn-row">
+            <a class="btn btn--accent" href="#contact">
+              <svg viewBox="0 0 24 24"><path d="M3 12h18M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Hire Me
+            </a>
+            <a class="btn" id="cvBtn">
+              <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Download CV
+            </a>
+          </div>
+          <div class="social">
+            <small>Follow me on:</small>
+            <div class="icons">
+              <a class="icon-btn" href="https://www.linkedin.com/in/manasvikalp/" aria-label="LinkedIn" target="_blank"><svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8.5h4V23h-4V8.5zM8.5 8.5h3.8v2h.06c.53-1 1.82-2.06 3.75-2.06 4.01 0 4.75 2.64 4.75 6.06V23h-4v-6.5c0-1.55-.03-3.55-2.16-3.55-2.16 0-2.49 1.69-2.49 3.44V23h-4V8.5z"/></svg></a>
+             <a class="icon-btn" href="https://www.behance.net/manasvikalp" aria-label="Behance" target="_blank">
+  <!-- Behance SVG -->
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+    <path d="M18.6 10.79h-4.2v1.02h4.2v-.01c0 2.29-1.28 3.29-3.36 3.29-1.55 0-2.65-.73-3.03-1.97h-2.1c.38 2.33 2.31 3.76 5.13 3.76 2.98 0 5.03-1.62 5.03-5.08v-.01c0-3.12-1.9-4.89-4.8-4.89-2.74 0-4.65 1.67-4.65 4.1v.77h8.01zm-9.54.91c1.08-.27 1.88-1.15 1.88-2.41 0-1.67-1.24-2.78-3.12-2.78H2v10.55h5.97c2.05 0 3.44-1.13 3.44-2.93 0-1.32-.68-2.26-1.74-2.43zM4.18 8.32h2.58c.98 0 1.57.52 1.57 1.38 0 .89-.65 1.44-1.65 1.44H4.18V8.32zm2.9 6.78H4.18v-3.15h2.72c1.16 0 1.8.54 1.8 1.55 0 1-.64 1.6-1.62 1.6zM13.9 6.48h5.1v1.15h-5.1V6.48z"/>
+  </svg>
+</a>
+              <a class="icon-btn" href="https://github.com/ManasVikalp" aria-label="GitHub" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 .5a12 12 0 00-3.79 23.4c.6.1.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.54-1.39-1.32-1.76-1.32-1.76-1.08-.74.08-.73.08-.73 1.2.08 1.84 1.23 1.84 1.23 1.06 1.82 2.77 1.29 3.45.99.1-.77.42-1.29.77-1.58-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.31 1.23a11.5 11.5 0 016.02 0c2.3-1.55 3.31-1.23 3.31-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.62-2.81 5.64-5.49 5.94.43.37.82 1.1.82 2.23v3.31c0 .32.22.69.83.57A12 12 0 0012 .5z"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <div class="visual">
+          <div class="ring"><div class="photo" aria-label="Headshot placeholder"></div></div>
+          <div class="badge"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M20 6l-11 11-5-5" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>Available for work</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Projects Section ===== -->
+  <section class="wrap" id="projects">
+    <div class="projects card reveal">
+      <header class="projects__header">
+        <h2 class="projects__title">Experience</h2>
+        <p class="projects__subtitle">A selection of UI/UX, Agile, and Product Management.</p>
+      </header>
+
+     <!-- <div class="filters" role="tablist" aria-label="Project filters">
+        <button class="chip is-active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button class="chip" data-filter="ui" role="tab" aria-selected="false">UI</button>
+        <button class="chip" data-filter="frontend" role="tab" aria-selected="false">Frontend</button>
+        <button class="chip" data-filter="product" role="tab" aria-selected="false">Product</button>
+      </div> -->
+
+      <div class="grid" id="projectGrid" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div class="modal" id="projectModal" aria-hidden="true" aria-labelledby="modalTitle" aria-modal="true" role="dialog">
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__dialog" role="document">
+      <button class="modal__close" aria-label="Close" data-close-modal>&times;</button>
+      <div class="modal__media" id="modalMedia"></div>
+      <div class="modal__content">
+        <h3 id="modalTitle" class="modal__title"></h3>
+        <p id="modalDesc" class="modal__desc"></p>
+        <div class="modal__meta">
+          <span class="badge-inline" id="modalTag"></span>
+          <span class="badge-inline" id="modalYear"></span>
+        </div>
+        <div id="modalRoles" class="modal__meta"></div>
+        <div class="modal__actions">
+          <a id="modalLive" class="btn btn--accent"></a>
+          <a id="modalRepo" class="btn"></a>
+		  <p id="modalExperience" class="modal__experience"></p> <!-- new -->
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Contact -->
+<section class="wrap" id="contact">
+  <div class="contact card">
+    <div class="contact__grid">
+      <!-- Left: Info -->
+      <div>
+        <h2 class="contact__title">Let’s work together</h2>
+        <p class="contact__subtitle">Send a message for freelance, full-time, or collaboration opportunities.</p>
+
+        <div class="info-cards">
+          <div class="info">
+            <b>Location</b>
+            Noida, India
+          </div>
+        </div>
+
+        <div class="map">Map / Office Illustration</div>
+      </div>
+
+      <!-- Right: Form -->
+      <form class="form" id="contactForm" novalidate>
+        <div class="row">
+          <div class="field">
+            <input id="name" name="name" class="input" type="text" placeholder=" " required />
+            <label class="label" for="name">Your Name*</label>
+            <div class="error" data-error-for="name"></div>
+          </div>
+          <div class="field">
+            <input id="email" name="email" class="input" type="email" placeholder=" " required />
+            <label class="label" for="email">Email*</label>
+            <div class="error" data-error-for="email"></div>
+          </div>
+        </div>
+
+        <div class="field">
+          <input id="subject" name="subject" class="input" type="text" placeholder=" " />
+          <label class="label" for="subject">Subject</label>
+          <div class="error" data-error-for="subject"></div>
+        </div>
+
+        <div class="field">
+          <textarea id="message" name="message" class="textarea" placeholder=" " required></textarea>
+          <label class="label" for="message">Message*</label>
+          <div class="error" data-error-for="message"></div>
+        </div>
+
+        <div class="row">
+          <a class="btn" href="ManasVikalp-Resume.pdf" download target="_blank">Download CV</a>
+          <button class="btn btn--accent" type="submit">Send Message</button>
+        </div>
+        <small class="note">* Required fields.</small>
+      </form>
+    </div>
+  </div>
+</section>
+
+	 <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-left">
+        © 2025 Manas Vikalp. All Rights Reserved.
+      </div>
+		<div class="footer-left">
+		Built with ♥ by Manas Vikalp
+		</div>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/in/manasvikalp/" target="_blank" title="LinkedIn">in</a>
+      </div>
+    </div>
+  </footer>
+  <!-- Go to Top Button -->
+<button id="goTopBtn" title="Go to top">↑</button>
+  <script>
+    /* ===== Replace placeholder with your headshot if you have one =====
+       document.querySelector('.photo').innerHTML =
+         '<img src="your-photo.jpg" alt="Manas Vikalp" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">';
+    */
+
+    /* ===== Reveal on load for hero ===== */
+    const obs = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('show'); obs.unobserve(e.target); }
+      })
+    }, { threshold: .2 });
+    document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+    /* ===== Download CV (replace with your real PDF URL) ===== */
+    document.getElementById('cvBtn').addEventListener('click', (e)=>{
+      e.preventDefault();
+      // Example: window.location.href = 'ManasVikalp-Resume.pdf';
+      window.open('ManasVikalp-Resume.pdf', '_blank');      
+    });
+
+    /* ===== Subtle parallax tilt on the hero photo 
+    const photo = document.querySelector('.photo');
+    let tiltRAF;
+    function handleTilt(e){
+      const rect = photo.getBoundingClientRect();
+      const cx = rect.left + rect.width/2;
+      const cy = rect.top + rect.height/2;
+      const dx = (e.clientX - cx)/rect.width;
+      const dy = (e.clientY - cy)/rect.height;
+      const rx = (dy * -10), ry = (dx * 10);
+      cancelAnimationFrame(tiltRAF);
+      tiltRAF = requestAnimationFrame(()=> photo.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)` );
+    }
+    window.addEventListener('mousemove', handleTilt);
+    window.addEventListener('mouseleave', ()=>{ photo.style.transform = 'none'; });===== */
+
+    /* ================= Projects ================= */
+    const PROJECTS = [
+  {
+    id:'p1',
+    title:'Accenture',
+    desc:'Delivered enterprise IT & CMS projects across Sanofi and Mondelez.',
+    tag:'experience',
+    year:'2014–2018',
+    cover:'accenture.jpg'
+  },
+  {
+    id:'p2',
+    title:'Entain',
+    desc:'Led CMS operations for Sportingbet-BR GR, Casino and Poker.',
+    tag:'experience',
+    year:'2018–2021',
+    cover:'entain.jpg'
+  },
+  {
+    id:'p3',
+    title:'Indegene',
+    desc:'Built UI pages and coordinated with Amgen EU & US stakeholders.',
+    tag:'experience',
+    year:'2021–2022',
+    cover:'indegene1.png'
+  },
+  {
+    id:'p4',
+    title:'Rise Against Hunger',
+    desc:'Integrated UPI & Razorpay payments; boosted engagement and donations.',
+    tag:'experience',
+    year:'2024',
+    cover:'rahi.jpeg'
+  },
+  {
+    id:'p5',
+    title:'Freelancer',
+    desc:'Digital strategy & brand engagement, increased Twitter impressions by 1000%.',
+    tag:'experience',
+    year:'2024–Present',
+    cover:'images/freelancer.jpg'
+  }
+];
+
+
+    const grid = document.getElementById('projectGrid');
+
+    function cardTemplate(p){
+      const roles = (p.roles||[]).map(r=>`<span class="badge-inline">${r}</span>`).join('');
+      const cover = p.cover
+        ? `<img src="${p.cover}" alt="${p.title}" style="width:100%;height:100%;object-fit:cover">`
+        : `<svg width="72" height="72" viewBox="0 0 24 24" aria-hidden="true">
+             <circle cx="12" cy="12" r="10" fill="#fff" />
+             <path d="M6 15l3-3 2 2 4-4 3 3" fill="none" stroke="#ff5a3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+           </svg>`;
+      return `
+        <article class="card-p" data-id="${p.id}" data-tag="${p.tag}" tabindex="0" aria-label="${p.title}">
+          <div class="card-p__thumb">${cover}</div>
+          <div class="card-p__cap">
+            <h3 class="card-p__title">${p.title}</h3>
+            <p class="card-p__desc">${p.desc}</p>
+            <div class="tags">
+              <span class="badge-inline">${p.tag}</span>
+              <span class="badge-inline">${p.year}</span>
+              ${roles}
+            </div>
+          </div>
+        </article>`;
+    }
+    function renderProjects(list=PROJECTS){ grid.innerHTML = list.map(cardTemplate).join(''); }
+    renderProjects();
+
+    /* Filters */
+    const chips = document.querySelectorAll('.chip');
+    chips.forEach(chip=>{
+      chip.addEventListener('click', ()=>{
+        chips.forEach(c=>{ c.classList.remove('is-active'); c.setAttribute('aria-selected','false'); });
+        chip.classList.add('is-active'); chip.setAttribute('aria-selected','true');
+        const key = chip.dataset.filter;
+        renderProjects(key==='all' ? PROJECTS : PROJECTS.filter(p=>p.tag===key));
+      });
+    });
+
+    /* Modal */
+    const modal = document.getElementById('projectModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc  = document.getElementById('modalDesc');
+    const modalMedia = document.getElementById('modalMedia');
+    const modalTag   = document.getElementById('modalTag');
+    const modalYear  = document.getElementById('modalYear');
+    const modalRoles = document.getElementById('modalRoles');
+    const modalLive  = document.getElementById('modalLive');
+    const modalRepo  = document.getElementById('modalRepo');
+	
+	// Map by id or title (keep whatever you already use)
+const EXPERIENCE_TEXT_BY_ID = {
+  p1: `
+    <ul class="experience-list">
+      <li><strong>Project/Client:</strong> Sanofi and Mondelez</li>
+      <li>Led enterprise CMS (Sitecore) projects for Sanofi & Mondelez — gathering requirements, coordinating across full SDLC, and managing Agile delivery with cross-functional teams.</li>
+      <li>Oversaw deployments & infrastructure — Sitecore, Octopus, IIS, DNS, and AKAMAI CDN; deployed 200+ sites, created KT/user manuals, configured New Relic, and supported CRs/incidents in production.</li>
+      <li>Enhanced performance & quality — implemented remediation strategies, executed email campaigns, regression testing, defect resolution, and optimized bulk deployments with secure role/permission management.</li>
+    </ul>
+  `,
+  p2: `
+    <ul class="experience-list">
+      <li><strong>Project/Client:</strong> Sportingbet-BR GR, Casino and Poker</li>
+      <li>Managed CMS operations for Sportingbet-BR GR, Casino & Poker, including requirements gathering, business specification analysis, and web page/content creation.</li>
+      <li>Developed promotional assets & player communications, created Sitecore usage guides, and led task assignment, reviews, and process improvement initiatives.</li>
+      <li>Ensured smooth operations & quality delivery by resolving live issues, collaborating with technical/game teams, and testing new functionalities.</li>
+    </ul>
+  `,
+  p3:  `
+    <ul class="experience-list">
+      <li><strong>Project/Client:</strong> Amgen EU and Amgen US</li>
+      <li>Developed regional web pages for Amgen EU & US using HTML, CSS, JavaScript, and FED for Sitecore components.</li>
+      <li>Collaborated with clients & stakeholders to gather requirements, prepare specifications, assign/review tasks in Jira, and ensure smooth Agile delivery.</li>
+      <li>Optimized site performance & quality by implementing SEO recommendations and coordinating across SFMC, Sitecore, and QA teams for error-free delivery.</li>
+    </ul>
+  `,
+  p4:  `
+    <ul class="experience-list">
+      <li><strong>Project/Client:</strong> Rise against Hunger India</li>
+      <li>Delivered responsive support to clients, donors, and stakeholders via multiple channels, ensuring confidentiality and maintaining service excellence with empathy and ownership.</li>
+      <li>Streamlined donor experience & logistics by collaborating with operations and marketing teams, improving workflows and cross-functional efficiency.</li>
+      <li>Implemented digital payment integrations (UPI & Razorpay) and boosted Twitter engagement rates by 12% and impressions by 30% within 3 months.</li>
+    </ul>
+  `,
+  p5:  `
+    <ul class="experience-list">
+      <li><strong>Project/Client:</strong> </li>
+      <li>Drove digital growth strategies for clients, boosting Twitter impressions by 1000%, designing Meta assets, and developing websites for brand consistency and engagement.</li>
+      <li>Contributed to grassroots marketing & distribution in family-run business, coordinating campaigns, vendor outreach, and improving product visibility in rural areas.</li>
+      <li>Enhanced professional skills through certifications and training, including Scrum Master (PSM I), while refining audience targeting and digital content strategies.</li>
+    </ul>
+  `,
+};
+const EXPERIENCE_TEXT_BY_TITLE = {
+  "Accenture": "4 years at Accenture — Sitecore delivery, enterprise CMS, client coordination.",
+  "Entain": "3+ years at Entain — global CMS ops for Sports/Casino, Agile releases.",
+  "Indegene": "Indegene — UI builds for Amgen EU/US, accessibility & design system tokens.",
+  "Rise Against Hunger": "UPI/Razorpay integration — improved donations and engagement.",
+  "Freelancer": "Digital strategy & growth — campaigns, SEO, and UI/UX delivery."
+};
+
+// Helper (uses id first, then title)
+function getExperienceText(p){
+  return EXPERIENCE_TEXT_BY_ID[p.id] 
+      || EXPERIENCE_TEXT_BY_TITLE[p.title] 
+      || "";
+}
+
+	const modalExperience = document.getElementById('modalExperience');
+
+    function openModal(id){
+      const p = PROJECTS.find(x=>x.id===id); if(!p) return;
+      modalTitle.textContent = p.title;
+      modalDesc.textContent  = p.desc;
+      modalTag.textContent   = p.tag;
+	   modalExperience.innerHTML  = getExperienceText(p);
+      modalYear.textContent  = p.year;
+      modalRoles.innerHTML   = (p.roles||[]).map(r=>`<span class="badge-inline">${r}</span>`).join('');
+      modalLive.href = p.live || '#'; modalRepo.href = p.repo || '#';
+      modalMedia.innerHTML = p.cover
+        ? `<img src="${p.cover}" alt="${p.title}" style="width:100%;height:100%;object-fit:cover;">`
+        : `<div style="display:grid;place-items:center;height:100%;"><svg width="92" height="92" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#fff"/><path d="M6 15l3-3 2 2 4-4 3 3" fill="none" stroke="#ff5a3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>`;
+      modal.setAttribute('aria-hidden','false');
+      document.body.style.overflow='hidden';
+    }
+    function closeModal(){ modal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+    modal.addEventListener('click', e=>{ if(e.target.matches('[data-close-modal], .modal__backdrop')) closeModal(); });
+    window.addEventListener('keydown', e=>{ if(e.key==='Escape' && modal.getAttribute('aria-hidden')==='false') closeModal(); });
+
+    grid.addEventListener('click', e=>{
+      const card = e.target.closest('.card-p'); if(card) openModal(card.dataset.id);
+    });
+    grid.addEventListener('keydown', e=>{
+      const card = e.target.closest('.card-p');
+      if(card && (e.key==='Enter' || e.key===' ')){ e.preventDefault(); openModal(card.dataset.id); }
+    });
+
+    /* Reveal projects when in view */
+    if(typeof IntersectionObserver!=='undefined'){
+      const cont = document.querySelector('.projects.reveal');
+      const ob2 = new IntersectionObserver((entries)=>{
+        entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('show'); ob2.unobserve(en.target);} });
+      },{threshold:.2});
+      cont && ob2.observe(cont);
+    }
+	
+	 /* ===== Contact form validation + mailto fallback =====
+     To use Formspree: replace sendViaMailto(formData) with fetch('https://formspree.io/f/xxxxxxx',{method:'POST',body:formData});
+  */
+  const form = document.getElementById('contactForm');
+  const toast = document.getElementById('toast');
+
+  const setError = (name, msg='')=>{
+    const el = document.querySelector(`[data-error-for="${name}"]`);
+    if(el) el.textContent = msg;
+  };
+  const validateEmail = (v)=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+
+  form.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const fd = new FormData(form);
+    const name = (fd.get('name')||'').trim();
+    const email = (fd.get('email')||'').trim();
+    const message = (fd.get('message')||'').trim();
+    let ok = true;
+
+    setError('name'); setError('email'); setError('message');
+
+    if(!name){ setError('name','Please enter your name.'); ok=false; }
+    if(!email || !validateEmail(email)){ setError('email','Enter a valid email.'); ok=false; }
+    if(!message){ setError('message','Please write a message.'); ok=false; }
+    if(!ok) return;
+
+    // MAILTO fallback — opens default email client with prefilled content.
+    sendViaMailto(fd);
+
+    // Show toast
+    toast.classList.add('show');
+    setTimeout(()=>toast.classList.remove('show'), 2500);
+    form.reset();
+  });
+
+  function sendViaMailto(fd){
+    const subject = encodeURIComponent(fd.get('subject') || 'Portfolio Inquiry');
+    const body = encodeURIComponent(
+      `Name: ${fd.get('name')}\nEmail: ${fd.get('email')}\n\nMessage:\n${fd.get('message')}`
+    );
+    const to = 'manasv.0001@gmail.com';
+    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+  }
+  
+  // Replace placeholder circle with your headshot
+	document.querySelector('.photo').innerHTML =
+	'<img src="manas.jpg" alt="Manas Vikalp" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">';
+	
+	// Go to Top Button
+const goTopBtn = document.getElementById("goTopBtn");
+
+// Show/Hide button on scroll
+window.addEventListener("scroll", () => {
+  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+    goTopBtn.classList.add("show");
+  } else {
+    goTopBtn.classList.remove("show");
+  }
+});
+
+
+
+function cardTemplate(p){
+  return `
+    <article class="card-p" data-id="${p.id}" data-tag="${p.tag}" tabindex="0" aria-label="${p.title}">
+      <div class="card-p__thumb" style="background-image: url('${p.cover}');"></div>
+      <div class="card-p__cap">
+        <h3 class="card-p__title">${p.title}</h3>
+        <p class="card-p__desc">${p.desc}</p>
+        <div class="tags">
+          <span class="badge-inline">${p.tag}</span>
+          <span class="badge-inline">${p.year}</span>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+// Scroll to top on click
+goTopBtn.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+  </script>
+</body>
+</html>
